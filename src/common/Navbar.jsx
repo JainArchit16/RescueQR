@@ -18,7 +18,7 @@ const Navbar = () => {
     <div className="w-full flex flex-row justify-between p-5 px-10 items-center text-xl text-[#d3e3fd]">
       <div className="flex flex-row items-center">
         <img src={logo} alt="logo" className="w-[70px] px-4" />
-        <p>RecueQR</p>
+        <p>RescueQR</p>
       </div>
       <div className="flex flex-row gap-6">
         <Link to="/">

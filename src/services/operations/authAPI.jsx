@@ -1,4 +1,4 @@
-import { setAccountType, setsignupData } from "../../slices/authSlice";
+import { setsignupData } from "../../slices/authSlice";
 import { auth } from "../../config/firebase";
 import { toast } from "react-hot-toast";
 import { signOut } from "firebase/auth";
@@ -10,7 +10,7 @@ export const logout = (navigate) => {
       .then(() => {
         toast.success("Logged out successfully");
         dispatch(setsignupData(null));
-        dispatch(setAccountType(null));
+
         dispatch(setProfileData(null));
       })
       .catch((error) => {

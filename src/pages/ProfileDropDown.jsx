@@ -8,7 +8,7 @@ import { useRef, useState } from "react";
 // import { AiOutlineCaretDown } from "react-icons/ai";
 import { VscDashboard, VscSignOut } from "react-icons/vsc";
 
-import { setAccountType, setsignupData } from "../slices/authSlice";
+import { setsignupData } from "../slices/authSlice";
 import { logout } from "../services/operations/authAPI";
 
 const ProfileDropDown = () => {
