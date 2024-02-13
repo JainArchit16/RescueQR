@@ -39,28 +39,28 @@ const Setting = () => {
 
   const user = profileData;
 
-  const fetchData = async () => {
-    if (auth.currentUser) {
-      try {
-        const querySnapshot = await getDocs(collection(db, "users"));
-        const userDataArray = querySnapshot.docs.map((doc) => ({
-          ...doc.data(),
-        }));
+  // const fetchData = async () => {
+  //   if (auth.currentUser) {
+  //     try {
+  //       const querySnapshot = await getDocs(collection(db, "users"));
+  //       const userDataArray = querySnapshot.docs.map((doc) => ({
+  //         ...doc.data(),
+  //       }));
 
-        console.log("All user data:", userDataArray);
+  //       console.log("All user data:", userDataArray);
 
-        const userWithUid = userDataArray.find(
-          (user) => user.id === auth.currentUser.uid
-        );
+  //       const userWithUid = userDataArray.find(
+  //         (user) => user.id === auth.currentUser.uid
+  //       );
 
-        console.log("User with uid:", userWithUid);
-      } catch (error) {
-        console.error("Error fetching account type:", error.message);
-      }
-    } else {
-      navigate("/login");
-    }
-  };
+  //       console.log("User with uid:", userWithUid);
+  //     } catch (error) {
+  //       console.error("Error fetching account type:", error.message);
+  //     }
+  //   } else {
+  //     navigate("/login");
+  //   }
+  // };
 
   const fetchUserData = async () => {
     if (auth.currentUser) {
@@ -87,9 +87,9 @@ const Setting = () => {
     }
   };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
   useEffect(() => {
     fetchUserData();
@@ -413,11 +413,11 @@ const Setting = () => {
             <h2 className="text-lg font-semibold text-richblack-5">
               Delete Account
             </h2>
-            <div className="w-3/5 text-pink-25">
+            <div className=" text-pink-25">
               <p>Would you like to delete account?</p>
               <p>
-                This account may contain Paid Courses. Deleting your account is
-                permanent and will remove all the contain associated with it.
+                Deleting your account is permanent and will remove all the
+                contain associated with it.
               </p>
             </div>
             <button

@@ -41,28 +41,28 @@ const MyProfile = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const fetchData = async () => {
-    if (auth.currentUser) {
-      try {
-        const querySnapshot = await getDocs(collection(db, "users"));
-        const userDataArray = querySnapshot.docs.map((doc) => ({
-          ...doc.data(),
-        }));
+  // const fetchData = async () => {
+  //   if (auth.currentUser) {
+  //     try {
+  //       const querySnapshot = await getDocs(collection(db, "users"));
+  //       const userDataArray = querySnapshot.docs.map((doc) => ({
+  //         ...doc.data(),
+  //       }));
 
-        console.log("All user data:", userDataArray);
+  //       console.log("All user data:", userDataArray);
 
-        const userWithUid = userDataArray.find(
-          (user) => user.id === auth.currentUser?.uid
-        );
+  //       const userWithUid = userDataArray.find(
+  //         (user) => user.id === auth.currentUser?.uid
+  //       );
 
-        console.log("User with uid:", userWithUid);
-      } catch (error) {
-        console.error("Error fetching account type:", error.message);
-      }
-    } else {
-      navigate("/login");
-    }
-  };
+  //       console.log("User with uid:", userWithUid);
+  //     } catch (error) {
+  //       console.error("Error fetching account type:", error.message);
+  //     }
+  //   } else {
+  //     navigate("/login");
+  //   }
+  // };
 
   const fetchUserData = async () => {
     if (auth.currentUser) {
@@ -74,7 +74,7 @@ const MyProfile = () => {
           ...doc.data(),
         }));
 
-        console.log("All Doctors/patient data:", userDataArray);
+        // console.log("All Doctors/patient data:", userDataArray);
 
         const userWithUid = userDataArray.find(
           (user) => user.email === auth.currentUser.email
@@ -94,7 +94,7 @@ const MyProfile = () => {
   };
 
   useEffect(() => {
-    fetchData();
+    fetchUserData();
   }, []);
 
   const fileInputRef = useRef(null);
@@ -221,10 +221,15 @@ const MyProfile = () => {
         <div className="flex flex-row gap-4 justify-between items-center text-white bg-[#161D29] p-8 rounded-lg">
           <div className="flex flex-row gap-8 items-center justify-between">
             <img
-              src={`${user?.carPic}`}
+              src={
+                user?.carPic
+                  ? user.carPic
+                  : "https://blog.snappymob.com/wp-content/uploads/2020/12/8-Tips-for-Designing-Empty-Placeholder-Pages-Leni-Featured.png"
+              }
               alt="xyz"
-              className="aspect-square w-[150px]  object-cover"
+              className="aspect-square w-[150px] object-cover"
             />
+
             <div>
               <p className="text-lg my-1">Upload Car Picture</p>
               <div className="flex flex-row gap-4 mt-2">
