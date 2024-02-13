@@ -9,6 +9,7 @@ import { toast } from "react-hot-toast";
 import { setsignupData } from "../slices/authSlice";
 import Loader from "../common/Loader";
 import { provider } from "../config/firebase";
+import image2 from "../assets/car_safety.jpg"
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -69,7 +70,7 @@ function LoginForm() {
   return !loading ? (
     <>
       <div className="flex flex-row justify-between items-center h-fit mx-32 my-auto">
-        <div className="w-[30%] bg-[#0842a0] rounded-xl p-10">
+        <div className="w-[40%] bg-[#0842a0] rounded-xl p-10">
           <form
             onSubmit={handleOnSubmit}
             className="flex w-full flex-col gap-y-4 rounded-xl text-[#d3e3fd]"
@@ -142,12 +143,14 @@ function LoginForm() {
             </button>
           </div>
         </div>
-
-        {/* <img
-          src={image2}
-          alt="doc"
-          className="rounded-lg h-[400px] w-[650px] z-50 relative"
-        /> */}
+        
+        
+          <img
+            src={image2}
+            alt="doc"
+            className="rounded-lg h-[400px] w-[600px] z-50 relative"
+          />
+        
       </div>
     </>
   ) : (

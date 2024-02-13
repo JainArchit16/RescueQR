@@ -18,10 +18,10 @@ const Home = () => {
             <span className="font-bold text-[#032FF2]">Is Our Responsiblity</span> .
           </p>
           <p className="w-[70%] text-xl my-4">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam quaerat, placeat dolores unde officiis laudantium veritatis dicta animi saepe aliquam repellat ab fugiat. Nostrum error possimus recusandae molestias, dolorem quibusdam!
+            Welcome to our platform, where we're dedicated to reshaping the landscape of emergency medical response for car accident victims. Our mission is clear: to leverage cutting-edge technology to bridge the gap between accidents and immediate medical care. Through innovative AI-driven solutions, we're committed to revolutionizing the way medical information is accessed and utilized during critical moments.
           </p>
           <IconBtn
-            text={"Get An Appointment"}
+            text={"Get QR code"}
             outline={true}
             customClasses={"bg-[#032ff2] my-10"}
           ></IconBtn>
@@ -44,22 +44,14 @@ const Home = () => {
         <div className="w-[40%]">
           <p className="text-[#032FF2] text-[40px] font-semibold">About Us</p>
           <p className="text-[#d3e3fd] text-lg">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium accusantium cumque ab sed dolores ratione voluptates nobis, sunt illo maxime amet! Tempora, similique deleniti atque est inventore non harum repellat.
+            At the heart of our platform lies a powerful system designed to deliver essential medical reports swiftly and efficiently. Through the seamless integration of AI and image analysis, we provide responders with instant access to vital information crucial for informed decision-making and targeted care. By simplifying the process through a QR code scan, we empower emergency personnel to make rapid, life-saving interventions when time is of the essence. Join us on our journey to redefine emergency medical response and make a tangible impact on the lives of car accident victims worldwide.
           </p>
-          <IconBtn
-            text={"Login"}
-            outline={true}
-            customClasses={"bg-[#032ff2] my-10"}
-            reverse={true}
-            onClick={() => navigate("/login")}
-          >
-            <FaArrowRight />
-          </IconBtn>
+
         </div>
       </div>
 
       <Services />
-      
+
     </div>
   );
 };
