@@ -5,7 +5,7 @@ import { BiCloudUpload } from "react-icons/bi";
 import { useForm } from "react-hook-form";
 import { FiTrash2 } from "react-icons/fi";
 import { getAuth, deleteUser } from "firebase/auth";
-import { setAccountType, setsignupData } from "../../slices/authSlice";
+import { setsignupData } from "../../slices/authSlice";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import { updateProfile } from "firebase/auth";
@@ -33,43 +33,39 @@ const Setting = () => {
 
   const { register, handleSubmit } = useForm();
 
-  const { accountType, signupData } = useSelector((state) => state.auth);
+  const { signupData } = useSelector((state) => state.auth);
 
   const { profileData } = useSelector((state) => state.profile);
 
   const user = profileData;
 
-  const fetchData = async () => {
-    if (auth.currentUser) {
-      try {
-        const querySnapshot = await getDocs(collection(db, "users"));
-        const userDataArray = querySnapshot.docs.map((doc) => ({
-          ...doc.data(),
-        }));
+  // const fetchData = async () => {
+  //   if (auth.currentUser) {
+  //     try {
+  //       const querySnapshot = await getDocs(collection(db, "users"));
+  //       const userDataArray = querySnapshot.docs.map((doc) => ({
+  //         ...doc.data(),
+  //       }));
 
-        console.log("All user data:", userDataArray);
+  //       console.log("All user data:", userDataArray);
 
-        const userWithUid = userDataArray.find(
-          (user) => user.id === auth.currentUser.uid
-        );
+  //       const userWithUid = userDataArray.find(
+  //         (user) => user.id === auth.currentUser.uid
+  //       );
 
-        console.log("User with uid:", userWithUid);
-
-        dispatch(setAccountType(userWithUid.accountType));
-      } catch (error) {
-        console.error("Error fetching account type:", error.message);
-      }
-    } else {
-      navigate("/login");
-    }
-  };
+  //       console.log("User with uid:", userWithUid);
+  //     } catch (error) {
+  //       console.error("Error fetching account type:", error.message);
+  //     }
+  //   } else {
+  //     navigate("/login");
+  //   }
+  // };
 
   const fetchUserData = async () => {
     if (auth.currentUser) {
       try {
-        const querySnapshot = await getDocs(
-          collection(db, accountType.toLowerCase())
-        );
+        const querySnapshot = await getDocs(collection(db, "users"));
         const userDataArray = querySnapshot.docs.map((doc) => ({
           ...doc.data(),
         }));
@@ -91,9 +87,9 @@ const Setting = () => {
     }
   };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
   useEffect(() => {
     fetchUserData();
@@ -149,7 +145,7 @@ const Setting = () => {
 
     try {
       const q = query(
-        collection(db, accountType.toLowerCase()),
+        collection(db, "users"),
         where("email", "==", auth.currentUser.email)
       );
 
@@ -171,18 +167,17 @@ const Setting = () => {
           Gender: data.gender === null ? null : data.gender,
           about: data.about === null ? null : data.about,
         };
-        if (accountType === "DOCTORS") {
-          updateData.Speciality =
-            data.speciality === null ? null : data.speciality;
-          updateData.Qualification =
-            data.qualification === null ? null : data.qualification;
-          updateData.YearsOfExperience =
-            data.yearsOfExperience === null ? null : data.yearsOfExperience;
-        }
-        if (accountType === "PATIENTS") {
-          updateData.DateOfBirth =
-            data.dateOfBirth === null ? null : data.dateOfBirth;
-        }
+
+        updateData.Speciality =
+          data.speciality === null ? null : data.speciality;
+        updateData.Qualification =
+          data.qualification === null ? null : data.qualification;
+        updateData.YearsOfExperience =
+          data.yearsOfExperience === null ? null : data.yearsOfExperience;
+
+        updateData.DateOfBirth =
+          data.dateOfBirth === null ? null : data.dateOfBirth;
+
         await updateDoc(docRef, updateData);
       }
 
@@ -203,7 +198,7 @@ const Setting = () => {
     const id = toast.loading("Deleting...");
     try {
       const q = query(
-        collection(db, accountType.toLowerCase()),
+        collection(db, "users"),
         where("email", "==", auth.currentUser.email)
       );
 
@@ -323,33 +318,6 @@ const Setting = () => {
                     className="bg-[#2C333F] p-2 rounded-md mt-3 focus:outline-none w-[120%]"
                   />
                 </label>
-                {accountType === "DOCTORS" ? (
-                  <label for="speciality">
-                    <p className="text-[#F1F2FF]">Date of Birth</p>
-                    <input
-                      type="text"
-                      name="speciality"
-                      id="speciality"
-                      placeholder="Enter Speciality"
-                      defaultValue={user?.Speciality}
-                      {...register("speciality")}
-                      className="bg-[#2C333F] p-2 rounded-md mt-3 focus:outline-none w-[120%]"
-                    />
-                  </label>
-                ) : (
-                  <label for="dateOfBirth">
-                    <p className="text-[#F1F2FF]">Date of Birth</p>
-                    <input
-                      type="date"
-                      name="dateOfBirth"
-                      id="dateOfBirth"
-                      placeholder="Enter DOB"
-                      defaultValue={user?.DateOfBirth}
-                      {...register("dateOfBirth")}
-                      className="bg-[#2C333F] p-2 rounded-md mt-3 focus:outline-none w-[120%]"
-                    />
-                  </label>
-                )}
 
                 <label for="contact">
                   <p className="text-[#F1F2FF]">Contact Number</p>
@@ -372,21 +340,6 @@ const Setting = () => {
                     className="bg-[#2C333F] p-2 rounded-md mt-3 focus:outline-none w-[120%]"
                   />
                 </label>
-
-                {accountType === "DOCTORS" && (
-                  <label for="yearsOfExperience">
-                    <p className="text-[#F1F2FF]">Years Of Experience</p>
-                    <input
-                      type="text"
-                      name="yearsOfExperience"
-                      id="yearsOfExperience"
-                      placeholder="Enter Years Of Experience"
-                      defaultValue={user?.YearsOfExperience}
-                      {...register("yearsOfExperience")}
-                      className="bg-[#2C333F] p-2 rounded-md mt-3 focus:outline-none w-[120%]"
-                    />
-                  </label>
-                )}
               </div>
 
               <div className="flex flex-col gap-8">
@@ -429,21 +382,6 @@ const Setting = () => {
                     className="bg-[#2C333F] p-2 rounded-md mt-3 focus:outline-none w-[150%]"
                   />
                 </label>
-
-                {accountType === "DOCTORS" && (
-                  <label for="qualification">
-                    <p className="text-[#F1F2FF]">Date of Birth</p>
-                    <input
-                      type="text"
-                      name="qualification"
-                      id="qualification"
-                      placeholder="Enter Qualification"
-                      defaultValue={user?.qualification}
-                      {...register("qualification")}
-                      className="bg-[#2C333F] p-2 rounded-md mt-3 focus:outline-none w-[120%]"
-                    />
-                  </label>
-                )}
               </div>
             </div>
           </div>
@@ -475,11 +413,11 @@ const Setting = () => {
             <h2 className="text-lg font-semibold text-richblack-5">
               Delete Account
             </h2>
-            <div className="w-3/5 text-pink-25">
+            <div className=" text-pink-25">
               <p>Would you like to delete account?</p>
               <p>
-                This account may contain Paid Courses. Deleting your account is
-                permanent and will remove all the contain associated with it.
+                Deleting your account is permanent and will remove all the
+                contain associated with it.
               </p>
             </div>
             <button

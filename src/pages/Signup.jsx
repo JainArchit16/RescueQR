@@ -7,7 +7,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, provider } from "../config/firebase";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setsignupData, setAccountType } from "../slices/authSlice";
+import { setsignupData} from "../slices/authSlice";
 import Loader from "../common/Loader";
 import { signInWithPopup, updateProfile } from "firebase/auth";
 
@@ -23,7 +23,7 @@ const Signup = () => {
     confirmPassword: "",
   });
   const [loading, setLoading] = useState(false);
-  const [accountType, setAccountTypes] = useState("DOCTORS");
+ 
 
   const { firstName, lastName, email, password, confirmPassword } = formData;
 
@@ -73,7 +73,7 @@ const Signup = () => {
 
       dispatch(setsignupData(serializableUserData));
 
-      dispatch(setAccountType(accountType));
+     
 
       addData();
 
@@ -102,30 +102,21 @@ const Signup = () => {
         FirstName: firstName,
         LastName: lastName,
         email: email,
-        about: null,
-        Gender: null,
-        ContactNumber: null,
+        phoneNumb:null,
+        model: null,
+        emergContact:null,carNumb:null,allergy:null,bloodType:null,carPic:null
+        
       };
 
-      if (accountType === "DOCTORS") {
-        Object.assign(data, {
-          Qualification: null,
-          Speciality: null,
-          PatientsHandled: [],
-          YearsOfExperience: null,
-        });
-      }
+    
 
       const docRef = await addDoc(
-        collection(db, accountType.toLowerCase()),
+        collection(db,"users"),
         data
       );
       console.log("Document written with ID: ", docRef.id);
 
-      await addDoc(collection(db, "users"), {
-        accountType,
-        id: auth.currentUser.uid,
-      });
+      
     } catch (e) {
       console.error("Error adding document: ", e);
     }
@@ -140,13 +131,7 @@ const Signup = () => {
       [e.target.name]: e.target.value,
     }));
   };
-  const tabData = [
-    {
-      id: 1,
-      tabName: "Doctor",
-      type: "DOCTORS",
-    },
-  ];
+  
 
   return !loading ? (
     <>

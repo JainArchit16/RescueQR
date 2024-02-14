@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { VscSignOut } from "react-icons/vsc";
 import ConfirmationModal from "../../common/ConfirmationModal";
 import toast from "react-hot-toast";
-import { setsignupData, setAccountType } from "../../slices/authSlice";
+import { setsignupData } from "../../slices/authSlice";
 import { logout } from "../../services/operations/authAPI";
 
 const Sidebar = () => {
@@ -23,7 +23,7 @@ const Sidebar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { accountType } = useSelector((state) => state.auth);
+ 
 
   const handleLogout = () => {
     dispatch(logout(navigate));
@@ -34,7 +34,7 @@ const Sidebar = () => {
       <div className="flex flex-col border-r-[1px] border-white h-[100%] bg-[#071a2b] py-10 text-white gap-4 w-full min-h-screen">
         <div className="flex flex-col gap-3 h-full">
           {sidebarLinks.map((element) => {
-            if (accountType === element.type || element.type === "all") {
+            
               return (
                 <SidebarLinks
                   key={element.id}
@@ -42,7 +42,7 @@ const Sidebar = () => {
                   iconName={element.icon}
                 />
               );
-            }
+            
           })}
         </div>
 
