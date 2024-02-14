@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-
+import image from "../assets/happy_family.jpg"
 import { FaGoogle } from "react-icons/fa";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, provider } from "../config/firebase";
@@ -269,11 +269,11 @@ const Signup = () => {
           </div>
         </div>
         <div className="relative">
-          {/* <img
-            // src={image1}
+          <img
+            src={image}
             alt="doc"
             className="rounded-lg h-[400px] w-[450px] z-50 relative"
-          /> */}
+          />
           <div className="absolute w-[450px] h-[400px] bg-[#032ff2] -translate-y-[380px] translate-x-5 rounded-lg"></div>
         </div>
       </div>
