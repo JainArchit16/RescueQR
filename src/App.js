@@ -15,7 +15,6 @@ import BlogPage from "./common/BlogPage";
 import QR from "./components/QR";
 import Scan from "./components/Scan";
 
-
 function App() {
   return (
     <div className="w-[100%] min-w-screen min-h-[100vh] flex flex-col font-inter bg-[#031525] overflow-x-hidden">
@@ -41,8 +40,15 @@ function App() {
           <Route path="settings" element={<Setting />}></Route>
           <Route path="write-blog" element={<Writeblog />}></Route>
           <Route path="my-blogs" element={<MyBlogs />}></Route>
-
         </Route>
+        <Route
+          path="/qr"
+          element={
+            <PrivateRoute>
+              <QR />
+            </PrivateRoute>
+          }
+        ></Route>
       </Routes>
     </div>
   );
