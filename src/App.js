@@ -13,6 +13,7 @@ import Writeblog from "./components/Dashboard/Writeblog";
 import MyBlogs from "./components/Dashboard/MyBlogs";
 import BlogPage from "./common/BlogPage";
 import QR from "./components/QR";
+import Scan from "./components/Scan";
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <Route path="/signup" element={<Signup />}></Route>
         <Route path="/blog-page" element={<BlogPage />}></Route>
         <Route path="/qr" element={<QR />}></Route>
+        <Route path="/scan" element={<Scan />}></Route>
 
         <Route
           path="/dashboard"
