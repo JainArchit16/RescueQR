@@ -183,7 +183,7 @@ const Writeblog = () => {
   }, []);
 
   return (
-    <div className="w-[70%] mx-auto bg-[#161D29] text-white rounded-md">
+    <div className="w-[70%] mx-auto bg-[#356ac5] text-white rounded-md">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="space-y-8 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-8 my-12"

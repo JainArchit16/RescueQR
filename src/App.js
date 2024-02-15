@@ -14,6 +14,8 @@ import MyBlogs from "./components/Dashboard/MyBlogs";
 import BlogPage from "./common/BlogPage";
 import QR from "./components/QR";
 import Scan from "./components/Scan";
+import Details from "./components/Details";
+import Reject from "./components/Reject";
 
 function App() {
   return (
@@ -25,8 +27,9 @@ function App() {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<Signup />}></Route>
         <Route path="/blog-page" element={<BlogPage />}></Route>
-        <Route path="/qr" element={<QR />}></Route>
         <Route path="/scan" element={<Scan />}></Route>
+        <Route path="/details" element={<Details />}></Route>
+        <Route path="/reject" element={<Reject />}></Route>
 
         <Route
           path="/dashboard"

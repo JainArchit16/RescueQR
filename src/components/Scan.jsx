@@ -1,17 +1,26 @@
 import React, { useState } from 'react';
+import image from '../assets/upload_image.png'
 
 const Scan = () => {
     const [selectedFile, setSelectedFile] = useState(null);
+    const [previewUrl, setPreviewUrl] = useState(image);
 
     const handleFileChange = (e) => {
-        e.preventDefault();
         const file = e.target.files[0];
         setSelectedFile(file);
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setPreviewUrl(reader.result);
+            };
+            reader.readAsDataURL(file);
+        }
     };
 
     const handleUpload = () => {
         if (selectedFile) {
-
+            const formData = new FormData();
+            formData.append('file', selectedFile);
             console.log('Uploading file:', selectedFile);
         } else {
             console.log('No file selected');
@@ -19,26 +28,47 @@ const Scan = () => {
     };
 
     return (
-        <div>
-            
-            <div className='text-white my-[2%] mx-[30%] w-[70%] h-[80%]'>
-                {selectedFile && (
-                    <div className='my-2 px-5 py-3 w-[60%] h-[30%] rounded-lg  border border-blue-700'>
-                        <h2 className='text-3xl my-2'>Selected Image:</h2>
-                        <img src={URL.createObjectURL(selectedFile)} alt="Selected" className='my-2 ' />
-                    </div>
-                )}
-                <div className='flex my-4'>
-                    <input type="file" onChange={handleFileChange} className='border px-2 py-2 w-fit mx-6 rounded-lg' />
-                    <button onClick={handleUpload} className='bg-blue-700 px-3 py-2 border rounded-lg'>Scan</button>
-                </div>
-            </div>
-            <div className='text-white my-[6%] mx-[30%] w-[550px] h-[80%] text-center text-lg'>
-                To upload an image, simply click on the "Upload Image" button, then select your desired image file from your device. After choosing the image, wait for it to upload. Once uploaded, you can preview the image if available. Follow any further instructions provided on the website, as additional actions may be required. Please note that information associated with the uploaded image will only become available after our AI system scans and approves it. Once the process is complete, you will be direct to uour desired location!
+        <div className='text-white flex'>
+            <div className="text-white mx-[100px]  my-[50px] w-[40%] text-lg">
+                <ul className="list-disc">
 
+                    <li className="my-6">
+                        <strong>Image Upload Feature : </strong>
+                        <span>This is a feature on the website that allows you to upload images for scanning via an advanced AI system.</span>
+                    </li>
+                    <li className="my-6">
+                        <strong>Comprehensive Analysis : </strong>
+                        <span>Once you've submitted your image, it undergoes comprehensive analysis by the AI algorithm.</span>
+                    </li>
+                    <li className="my-6">
+                        <strong>Access Granted : </strong>
+                        <span>If your uploaded image meets the acceptance criteria set by the AI, you'll gain access to the required information.</span>
+                    </li>
+                    <li className="my-6">
+                        <strong>Redirection on Failure : </strong>
+                        <span>However, if your uploaded image doesn't meet the acceptance criteria, you'll be automatically redirected to an alternative page.</span>
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <div className='flex mx-[30px] my-[100px] w-fit  h-fit border border-white py-10 rounded-lg'>
+                {previewUrl && (
+                    <img src={previewUrl} alt="Preview" className="mx-8" style={{ maxWidth: '100%', maxHeight: '200px' }} />
+                )}
+                <div>
+                    <input
+                        type="file"
+                        onChange={handleFileChange}
+                        className='my-10'
+                    />
+                    <button onClick={handleUpload} className='mx-5 bg-blue-700 p-2 rounded-lg'>Upload</button>
+                </div>
             </div>
         </div>
     );
 };
 
 export default Scan;
+
