@@ -27,7 +27,7 @@ function App() {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<Signup />}></Route>
         <Route path="/blog-page" element={<BlogPage />}></Route>
-        <Route path="/scan" element={<Scan />}></Route>
+        <Route path="/scan/:email" element={<Scan />}></Route>
         <Route path="/details" element={<Details />}></Route>
         <Route path="/reject" element={<Reject />}></Route>
 
