@@ -4,23 +4,24 @@ import { auth } from "../config/firebase";
 
 const QR = () => {
   const [qrvalue, setQRvalue] = useState("");
-  const [text, setText] = useState("");
+  const [text, setText] = useState(auth.currentUser.email);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     // console.log(auth);
-    setText(auth.currentUser.email);
-    setQRvalue("http://localhost:3000/scan/" + text);
+    setQRvalue("https://rescue-qr.vercel.app/scan/" + text);
   };
 
   return (
     <div className="flex">
       <div className="text-white mx-[100px]  my-[50px] w-[40%] text-lg">
         <ul className="list-disc">
-
           <li className="my-6">
             <strong>Generate QR Code:</strong>
-            <span>From your email ID, a QR code containing a link to the scan page for your particular email ID will be generated.</span>
+            <span>
+              From your email ID, a QR code containing a link to the scan page
+              for your particular email ID will be generated.
+            </span>
           </li>
           <li className="my-6">
             <strong>Scan QR Code:</strong>
@@ -28,7 +29,10 @@ const QR = () => {
           </li>
           <li className="my-6">
             <strong>Automatic Redirection:</strong>
-            <span>Once the QR code is scanned, you'll be automatically redirected to the scan page associated with your email ID.</span>
+            <span>
+              Once the QR code is scanned, you'll be automatically redirected to
+              the scan page associated with your email ID.
+            </span>
           </li>
           <li className="my-6">
             <strong>Upload Image:</strong>
@@ -36,11 +40,13 @@ const QR = () => {
           </li>
           <li className="my-6">
             <strong>Further Instructions (if any):</strong>
-            <span>Follow any additional instructions provided on the website, such as submitting additional details or waiting for further processing.</span>
+            <span>
+              Follow any additional instructions provided on the website, such
+              as submitting additional details or waiting for further
+              processing.
+            </span>
           </li>
-
         </ul>
-
       </div>
 
       <div className="px-16  border border-solid rounded-lg w-fit h-[450px] my-[70px] mx-8">
