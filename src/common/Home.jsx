@@ -51,6 +51,12 @@ const Home = () => {
       </div>
 
       <Services />
+      <div className="w-full">
+        <p className="text-[#d3e3fd] text-3xl text-center font-semibold">
+          Blogs
+        </p>
+        <Blogs />
+      </div>
 
     </div>
   );
