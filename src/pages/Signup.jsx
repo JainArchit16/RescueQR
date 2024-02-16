@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import image from "../assets/happy_family.jpg"
+import image from "../assets/happy_family.jpg";
 import { FaGoogle } from "react-icons/fa";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, provider } from "../config/firebase";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setsignupData} from "../slices/authSlice";
+import { setsignupData } from "../slices/authSlice";
 import Loader from "../common/Loader";
 import { signInWithPopup, updateProfile } from "firebase/auth";
 
@@ -23,7 +23,6 @@ const Signup = () => {
     confirmPassword: "",
   });
   const [loading, setLoading] = useState(false);
- 
 
   const { firstName, lastName, email, password, confirmPassword } = formData;
 
@@ -73,8 +72,6 @@ const Signup = () => {
 
       dispatch(setsignupData(serializableUserData));
 
-     
-
       addData();
 
       setLoading(false);
@@ -102,21 +99,18 @@ const Signup = () => {
         FirstName: firstName,
         LastName: lastName,
         email: email,
-        phoneNumb:null,
+        phoneNumb: null,
         model: null,
-        emergContact:null,carNumb:null,allergy:null,bloodType:null,carPic:null
-        
+        emergContact: null,
+        carNumb: null,
+        allergy: null,
+        bloodType: null,
+        carPic: null,
+        medicalRecord: null,
       };
 
-    
-
-      const docRef = await addDoc(
-        collection(db,"users"),
-        data
-      );
+      const docRef = await addDoc(collection(db, "users"), data);
       console.log("Document written with ID: ", docRef.id);
-
-      
     } catch (e) {
       console.error("Error adding document: ", e);
     }
@@ -131,13 +125,11 @@ const Signup = () => {
       [e.target.name]: e.target.value,
     }));
   };
-  
 
   return !loading ? (
     <>
       <div className="flex flex-row justify-between items-center mx-32 rounded-xl h-fit my-auto">
         <div className="bg-[#0842a0] rounded-xl p-10 ">
-
           {/* Form */}
           <form className="flex w-full flex-col gap-y-4  text-[#d3e3fd]">
             <div className="flex gap-x-4 w-full">

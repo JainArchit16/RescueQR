@@ -257,7 +257,24 @@ const MyProfile = () => {
             </div>
           </div>
         </div>
-
+        <div className="flex flex-row gap-4 justify-between items-center text-white bg-[#161D29] p-8 rounded-lg">
+          <div className="flex flex-col gap-10  justify-between">
+            <p className="text-lg">Medical History</p>
+            <p className="text-[#838894] text-md">
+              {user?.medicalRecord === null
+                ? "Write About YOur Medical History"
+                : `${user?.medicalRecord}`}
+            </p>
+          </div>
+          <IconBtn
+            text="Edit"
+            onClick={() => {
+              navigate("/dashboard/settings");
+            }}
+          >
+            <AiFillEdit />
+          </IconBtn>
+        </div>
         <div className="flex flex-row gap-4 justify-between items-center text-white bg-[#161D29] p-8 rounded-lg w-full">
           <div className="flex flex-col gap-10  justify-between w-full">
             <div className="flex flex-row w-full justify-between items-center">
