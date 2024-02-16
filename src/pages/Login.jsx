@@ -9,7 +9,7 @@ import { toast } from "react-hot-toast";
 import { setsignupData } from "../slices/authSlice";
 import Loader from "../common/Loader";
 import { provider } from "../config/firebase";
-import image2 from "../assets/car_safety.jpg"
+import image2 from "../assets/car_safety.jpg";
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -35,7 +35,6 @@ function LoginForm() {
 
       const serializableUserData = result.user.toJSON();
       dispatch(setsignupData(serializableUserData));
-      // dispatch(setsignupData(userData));
       navigate("/");
     } catch (error) {
       toast.error(error.message);
@@ -68,91 +67,78 @@ function LoginForm() {
   };
 
   return !loading ? (
-    <>
-      <div className="flex flex-row justify-between items-center h-fit mx-32 my-auto">
-        <div className="w-[40%] bg-[#0842a0] rounded-xl p-10">
-          <form
-            onSubmit={handleOnSubmit}
-            className="flex w-full flex-col gap-y-4 rounded-xl text-[#d3e3fd]"
+    <div className="flex flex-col items-center justify-center">
+      <div className="lg:w-full lg:max-w-md bg-[#0842a0] rounded-xl p-6">
+        <form
+          onSubmit={handleOnSubmit}
+          className="flex flex-col gap-4 text-[#d3e3fd]"
+        >
+          <label className="w-full">
+            <p className="mb-1 text-sm text-[#d3e3fd]">
+              Email Address <sup className="text-pink-200">*</sup>
+            </p>
+            <input
+              required
+              type="text"
+              name="email"
+              value={formData.email}
+              onChange={handleOnChange}
+              placeholder="Enter email address"
+              className="w-full rounded-md bg-[#f1f8ff] p-2 text-black"
+            />
+          </label>
+          <label className="relative">
+            <p className="mb-1 text-sm text-[#d3e3fd]">
+              Password <sup className="text-pink-200">*</sup>
+            </p>
+            <input
+              required
+              type={showPassword ? "text" : "password"}
+              name="password"
+              value={formData.password}
+              onChange={handleOnChange}
+              placeholder="Enter Password"
+              className="w-full rounded-md bg-[#f1f8ff] p-2 pr-10 text-black"
+            />
+            <span
+              onClick={() => setShowPassword((prev) => !prev)}
+              className="absolute right-3 top-[38px] z-[10] cursor-pointer"
+            >
+              {showPassword ? (
+                <AiOutlineEyeInvisible fontSize={20} fill="#AFB2BF" />
+              ) : (
+                <AiOutlineEye fontSize={20} fill="#AFB2BF" />
+              )}
+            </span>
+            <Link to="/forgot-password">
+              <p className="mt-1 text-xs text-blue-100">Forgot Password</p>
+            </Link>
+          </label>
+          <button
+            type="submit"
+            onClick={handleOnSubmit}
+            className="mt-4 rounded-md bg-[#f1f8ff] text-black py-2 px-4 font-medium"
           >
-            <label className="w-full">
-              <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-[#d3e3fd]">
-                Email Address <sup className="text-pink-200">*</sup>
-              </p>
-              <input
-                required
-                type="text"
-                name="email"
-                value={formData.email}
-                onChange={handleOnChange}
-                placeholder="Enter email address"
-                style={{
-                  boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
-                }}
-                className="w-full rounded-[0.5rem] bg-[#f1f8ff] p-[12px] text-black"
-              />
-            </label>
-            <label className="relative">
-              <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-[#d3e3fd]">
-                Password <sup className="text-pink-200">*</sup>
-              </p>
-              <input
-                required
-                type={showPassword ? "text" : "password"}
-                name="password"
-                value={formData.password}
-                onChange={handleOnChange}
-                placeholder="Enter Password"
-                style={{
-                  boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
-                }}
-                className="w-full rounded-[0.5rem] bg-[#f1f8ff] p-[12px] pr-12 text-black"
-              />
-              <span
-                onClick={() => setShowPassword((prev) => !prev)}
-                className="absolute right-3 top-[38px] z-[10] cursor-pointer"
-              >
-                {showPassword ? (
-                  <AiOutlineEyeInvisible fontSize={24} fill="#AFB2BF" />
-                ) : (
-                  <AiOutlineEye fontSize={24} fill="#AFB2BF" />
-                )}
-              </span>
-              <Link to="/forgot-password">
-                <p className="mt-1 ml-auto max-w-max text-xs text-blue-100">
-                  Forgot Password
-                </p>
-              </Link>
-            </label>
-          </form>
-          <div className="flex flex-col items-center text-[#d3e3fd] gap-y-2 mt-2">
-            <button
-              type="submit"
-              onClick={handleOnSubmit}
-              className="mt-6 rounded-[8px] bg-[#f1f8ff] text-black py-[8px] px-[12px] font-medium"
-            >
-              Login
-            </button>
-            <div className="text-center">- OR -</div>
-            <button
-              className="rounded-[8px] bg-[#f1f8ff] text-black py-[8px] px-[12px] font-medium flex flex-row justify-center items-center gap-3"
-              onClick={handleGoogle}
-            >
-              <FaGoogle />
-              Login Using Google
-            </button>
-          </div>
+            Login
+          </button>
+        </form>
+        <div className="flex flex-col items-center text-[#d3e3fd] gap-2 mt-4">
+          <div className="text-center">- OR -</div>
+          <button
+            className="rounded-md bg-[#f1f8ff] text-black py-2 px-4 font-medium flex items-center gap-2"
+            onClick={handleGoogle}
+          >
+            <FaGoogle />
+            Login Using Google
+          </button>
         </div>
-        
-        
-          <img
-            src={image2}
-            alt="doc"
-            className="rounded-lg h-[400px] w-[600px] z-50 relative"
-          />
-        
       </div>
-    </>
+      <img
+        src={image2}
+        alt="doc"
+        className="rounded-lg h-[200px] w-[300px] my-4 z-50 relative"
+      />
+    </div>
   ) : (
     <Loader />
   );
