@@ -157,27 +157,26 @@ const Setting = () => {
         const docRef = querySnapshot.docs[0].ref;
 
         // Update the document with the new data
-
+        // FirstName: firstName,
+        // LastName: lastName,
+        // email: email,
+        // phoneNumb:null,
+        // model: null,
+        // emergContact:null,carNumb:null,allergy:null,bloodType:null,carPic:null
         const updateData = {
           FirstName: data.firstName === null ? null : data.firstName,
           LastName: data.lastName === null ? null : data.lastName,
 
-          ContactNumber:
-            data.contactNumber === null ? null : data.contactNumber,
-          Gender: data.gender === null ? null : data.gender,
-          about: data.about === null ? null : data.about,
+          phoneNumb: data.phoneNumb === null ? null : data.phoneNumb,
+          model: data.model === null ? null : data.model,
+          emergContact: data.emergContact === null ? null : data.emergContact,
         };
 
-        updateData.Speciality =
-          data.speciality === null ? null : data.speciality;
-        updateData.Qualification =
-          data.qualification === null ? null : data.qualification;
-        updateData.YearsOfExperience =
-          data.yearsOfExperience === null ? null : data.yearsOfExperience;
+        updateData.carNumb = data.carNumb === null ? null : data.carNumb;
+        updateData.allergy = data.allergy === null ? null : data.allergy;
+        updateData.bloodType = data.bloodType === null ? null : data.bloodType;
 
-        updateData.DateOfBirth =
-          data.dateOfBirth === null ? null : data.dateOfBirth;
-
+        
         await updateDoc(docRef, updateData);
       }
 
@@ -302,7 +301,12 @@ const Setting = () => {
                 </p>
               </div>
             </div>
-
+            {/* // FirstName: firstName,
+LastName: lastName,
+email: email,
+phoneNumb:null,
+model: null,
+emergContact:null,carNumb:null,allergy:null,bloodType:null,carPic:null */}
             <div className="flex flex-row items-center justify-between mt-4 w-[70%]">
               <div className="flex flex-col gap-8">
                 <label for="firstName">
@@ -318,37 +322,12 @@ const Setting = () => {
                     className="bg-[#2C333F] p-2 rounded-md mt-3 focus:outline-none w-[120%]"
                   />
                 </label>
-
-                <label for="contact">
-                  <p className="text-[#F1F2FF]">Contact Number</p>
-                  <input
-                    type="number"
-                    name="contact"
-                    id="contact"
-                    placeholder="Enter Contact Number"
-                    defaultValue={user?.ContactNumber}
-                    {...register("contactNumber", {
-                      maxLength: {
-                        value: 12,
-                        message: "Invalid Contact Number",
-                      },
-                      minLength: {
-                        value: 10,
-                        message: "Invalid Contact Number",
-                      },
-                    })}
-                    className="bg-[#2C333F] p-2 rounded-md mt-3 focus:outline-none w-[120%]"
-                  />
-                </label>
-              </div>
-
-              <div className="flex flex-col gap-8">
                 <label for="lastname">
                   <p className="text-[#F1F2FF]">Last Name</p>
                   <input
                     required
                     type="text"
-                    name="lastname"
+                    name="LastName"
                     id="lastname"
                     placeholder="Enter Last Name"
                     defaultValue={user?.LastName}
@@ -356,29 +335,79 @@ const Setting = () => {
                     className="bg-[#2C333F] p-2 rounded-md mt-3 focus:outline-none w-[120%]"
                   />
                 </label>
-
-                <label for="gender">
-                  <p className="text-[#F1F2FF]">Gender</p>
+                <label for="about">
+                  <p className="text-[#F1F2FF]">Model</p>
                   <input
                     type="text"
-                    name="gender"
-                    id="gender"
-                    placeholder="Enter Gender"
-                    defaultValue={user?.Gender}
-                    {...register("gender")}
-                    className="bg-[#2C333F] p-2 rounded-md mt-3 focus:outline-none w-[120%]"
+                    name="model"
+                    id="about"
+                    placeholder="Enter model"
+                    defaultValue={user?.model}
+                    {...register("model")}
+                    className="bg-[#2C333F] p-2 rounded-md mt-3 focus:outline-none w-[150%]"
                   />
                 </label>
 
-                <label for="about">
-                  <p className="text-[#F1F2FF]">About</p>
+                <label for="contact">
+                  <p className="text-[#F1F2FF]">Contact Number</p>
+                  <input
+                    type="number"
+                    name="phoneNumb"
+                    id="contact"
+                    placeholder="Enter Contact Number"
+                    defaultValue={user?.phoneNumb}
+                    {...register("phoneNumb")}
+                    className="bg-[#2C333F] p-2 rounded-md mt-3 focus:outline-none w-[120%]"
+                  />
+                </label>
+              </div>
+
+              <div className="flex flex-col gap-8">
+                <label for="emergContact">
+                  <p className="text-[#F1F2FF]">Emergency contact</p>
                   <input
                     type="text"
-                    name="about"
+                    name="emergContact"
                     id="about"
-                    placeholder="Enter Bio"
-                    defaultValue={user?.about}
-                    {...register("about")}
+                    placeholder="Enter emergency contact"
+                    defaultValue={user?.emergContact}
+                    {...register("emergContact")}
+                    className="bg-[#2C333F] p-2 rounded-md mt-3 focus:outline-none w-[150%]"
+                  />
+                </label>
+                <label for="carNumb">
+                  <p className="text-[#F1F2FF]">Car Number</p>
+                  <input
+                    type="text"
+                    name="carNumb"
+                    id="carNumb"
+                    placeholder="Enter car number"
+                    defaultValue={user?.carNumb}
+                    {...register("carNumb")}
+                    className="bg-[#2C333F] p-2 rounded-md mt-3 focus:outline-none w-[150%]"
+                  />
+                </label>
+                <label for="allergy">
+                  <p className="text-[#F1F2FF]">Allergy</p>
+                  <input
+                    type="text"
+                    name="allergy"
+                    id="allergy"
+                    placeholder="Enter type of allergy"
+                    defaultValue={user?.allergy}
+                    {...register("allergy")}
+                    className="bg-[#2C333F] p-2 rounded-md mt-3 focus:outline-none w-[150%]"
+                  />
+                </label>
+                <label for="bloodType">
+                  <p className="text-[#F1F2FF]">Blood type</p>
+                  <input
+                    type="text"
+                    name="bloodType"
+                    id="bloodType"
+                    placeholder="Enter Bloodtype"
+                    defaultValue={user?.bloodType}
+                    {...register("bloodType")}
                     className="bg-[#2C333F] p-2 rounded-md mt-3 focus:outline-none w-[150%]"
                   />
                 </label>
