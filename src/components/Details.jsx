@@ -6,6 +6,7 @@ const Details = ({
   allergy,
   bloodType,
   contact,
+  
 }) => {
   return (
     <div className="">
@@ -21,6 +22,7 @@ const Details = ({
         <ul className=" w-fit h-fit my-8 ">
           <li className="my-6">Allergy : {allergy}</li>
           <li className="my-6">Blood Type : {bloodType}</li>
+          <li className="my-6">Contact : {contact}</li>
           <li className="my-6">Contact : {contact}</li>
         </ul>
       </div>

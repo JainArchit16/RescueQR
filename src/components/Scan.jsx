@@ -21,6 +21,7 @@ const Scan = () => {
   const TEMPLATE_ID = process.env.REACT_APP_TEMPLATE_ID;
   const [userData, setData] = useState({});
   const [emaily, setEmail] = useState(routeEmail);
+  const [location, setLocation] = useState(null);
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -54,7 +55,45 @@ const Scan = () => {
   useEffect(() => {
     fetchUserData(emaily);
   }, [emaily]);
+  useEffect(() => {
+    const getUserLocation = () => {
 
+      if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(
+          function (position) {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+            console.log("Latitude:", latitude);
+            console.log("Longitude:", longitude);
+            setLocation({ latitude, longitude });
+
+          },
+
+          function (error) {
+            switch (error.code) {
+              case error.PERMISSION_DENIED:
+                console.error("User denied the request for Geolocation.");
+                break;
+              case error.POSITION_UNAVAILABLE:
+                console.error("Location information is unavailable.");
+                break;
+              case error.TIMEOUT:
+                console.error("The request to get user location timed out.");
+                break;
+              case error.UNKNOWN_ERROR:
+                console.error("An unknown error occurred.");
+                break;
+            }
+          }
+        );
+      } else {
+        console.error("Geolocation is not supported by this browser.");
+      }
+    };
+
+
+    getUserLocation();
+  }, []);
   const handleFileUpload = async () => {
     if (1) {
       if (imageFile) {
@@ -87,7 +126,7 @@ const Scan = () => {
 
   return (
     <div className="flex flex-col justify-between items-center p-4 lg:flex-row">
-      <div className="text-white lg:w-1/2">
+      <div className="text-white lg:w-1/2 mx-12">
         <ul className="list-disc">
           <li className="my-6">
             <strong>Image Upload Feature : </strong>
@@ -100,7 +139,7 @@ const Scan = () => {
         </ul>
       </div>
 
-      <div className="flex flex-col gap-4 items-center justify-between lg:w-1/2">
+      <div className="flex flex-col gap-8 items-center justify-between lg:w-1/3 mx-20">
         <img
           src={upload}
           alt="xyz"

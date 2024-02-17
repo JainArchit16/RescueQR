@@ -8,13 +8,12 @@ const QR = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // console.log(auth);
     setQRvalue("https://rescue-qr.vercel.app/scan/" + text);
   };
 
   return (
-    <div className="flex">
-      <div className="text-white mx-[100px]  my-[50px] w-[40%] text-lg">
+    <div className="flex flex-col md:flex-row">
+      <div className="text-white mx-auto md:mx-[100px] my-4 md:my-[50px] w-full md:w-[40%] text-lg">
         <ul className="list-disc">
           <li className="my-6">
             <strong>Generate QR Code:</strong>
@@ -49,15 +48,14 @@ const QR = () => {
         </ul>
       </div>
 
-      <div className="px-16  border border-solid rounded-lg w-fit h-[450px] my-[70px] mx-8">
+      <div className="px-4 md:px-16 border border-solid rounded-lg w-full md:w-fit h-[450px] my-4 md:my-[70px] mx-auto md:mx-8">
         <div className="my-10 mx-6">
           <QRCode value={qrvalue} />
         </div>
         <form onSubmit={handleSubmit} className="my-8">
-          {/* <input type="text" name="textInput" placeholder='Enter your Emial ID' /> */}
           <button
             type="submit"
-            className=" text-white border border-blue-500 rounded-lg px-2 py-2 bg-blue-500 mx-12 my-4"
+            className="text-white border border-blue-500 rounded-lg px-2 py-2 bg-blue-500 mx-4 md:mx-12 my-4"
           >
             Generate QR Code
           </button>
