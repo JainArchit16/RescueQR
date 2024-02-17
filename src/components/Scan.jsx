@@ -92,33 +92,45 @@ const Scan = () => {
     getUserLocation();
   }, []);
   const handleFileUpload = async () => {
-    if (1) {
-      if (imageFile) {
-        console.log(userData);
-        const formData = new FormData();
-        formData.append("file", imageFile);
-        const PARAMS = {
-          to_mail: emaily,
-          date: Date.now(),
-          time: Date.now(),
-          carNumber: userData?.carNumb,
-          carModel: userData?.model,
-          latitude: location.latitude,
-          longitude: location.longitude,
-        };
-        await emailjs
-          .send(SERVICE_ID, TEMPLATE_ID, PARAMS, PUBLIC_KEY)
-          .then((result) => {
-            console.log(result.text);
-          })
-          .catch((error) => {
-            console.error(error.text);
-          });
-        navigate("/details");
-      } else {
-        console.log("No file selected");
-      }
-    } else navigate("/reject");
+    try {
+      const formData = new FormData();
+      formData.append("file", imageFile);
+      const response = await fetch("http://127.0.0.1:5000/predict", {
+        method: "POST", // Adjust the method as needed
+        headers: {
+          "Content-Type": "multipart/form-data", // Adjust the content type as needed
+        },
+        body: formData,
+      });
+      console.log(response);
+      if (response) {
+        if (imageFile) {
+          console.log(userData);
+          const PARAMS = {
+            to_mail: emaily,
+            date: Date.now(),
+            time: Date.now(),
+            carNumber: userData?.carNumb,
+            carModel: userData?.model,
+            latitude: location.latitude,
+            longitude: location.longitude,
+          };
+          await emailjs
+            .send(SERVICE_ID, TEMPLATE_ID, PARAMS, PUBLIC_KEY)
+            .then((result) => {
+              console.log(result.text);
+            })
+            .catch((error) => {
+              console.error(error.text);
+            });
+          navigate("/details");
+        } else {
+          console.log("No file selected");
+        }
+      } else navigate("/reject");
+    } catch (error) {
+      console.error("Error making API call:", error);
+    }
   };
 
   return (
