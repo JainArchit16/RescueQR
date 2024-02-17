@@ -57,7 +57,6 @@ const Scan = () => {
   }, [emaily]);
   useEffect(() => {
     const getUserLocation = () => {
-
       if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition(
           function (position) {
@@ -66,7 +65,6 @@ const Scan = () => {
             console.log("Latitude:", latitude);
             console.log("Longitude:", longitude);
             setLocation({ latitude, longitude });
-
           },
 
           function (error) {
@@ -91,7 +89,6 @@ const Scan = () => {
       }
     };
 
-
     getUserLocation();
   }, []);
   const handleFileUpload = async () => {
@@ -106,6 +103,8 @@ const Scan = () => {
           time: Date.now(),
           carNumber: userData?.carNumb,
           carModel: userData?.model,
+          latitude: location.latitude,
+          longitude: location.longitude,
         };
         await emailjs
           .send(SERVICE_ID, TEMPLATE_ID, PARAMS, PUBLIC_KEY)
@@ -119,9 +118,7 @@ const Scan = () => {
       } else {
         console.log("No file selected");
       }
-    }
-    else
-      navigate("/reject");
+    } else navigate("/reject");
   };
 
   return (
