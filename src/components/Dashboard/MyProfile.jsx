@@ -261,9 +261,9 @@ const MyProfile = () => {
           <div className="flex flex-col gap-10  justify-between">
             <p className="text-lg">Medical History</p>
             <p className="text-[#838894] text-md">
-              {user?.medicalRecord === null
+              {user?.medicalHistory === null
                 ? "Write About YOur Medical History"
-                : `${user?.medicalRecord}`}
+                : `${user?.medicalHistory}`}
             </p>
           </div>
           <IconBtn

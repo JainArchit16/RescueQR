@@ -1,4 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Details from "./Details";
+import Reject from "./Reject";
 import image from "../assets/upload_image.png";
 import { BiCloudUpload } from "react-icons/bi";
 import upload from "../assets/upload.png";
@@ -53,29 +56,33 @@ const Scan = () => {
   }, [emaily]);
 
   const handleFileUpload = async () => {
-    if (imageFile) {
-      console.log(userData);
-      const formData = new FormData();
-      formData.append("file", imageFile);
-      const PARAMS = {
-        to_mail: emaily,
-        date: Date.now(),
-        time: Date.now(),
-        carNumber: userData?.carNumb,
-        carModel: userData?.model,
-      };
-      await emailjs
-        .send(SERVICE_ID, TEMPLATE_ID, PARAMS, PUBLIC_KEY)
-        .then((result) => {
-          console.log(result.text);
-        })
-        .catch((error) => {
-          console.error(error.text);
-        });
-      navigate("/details");
-    } else {
-      console.log("No file selected");
+    if (1) {
+      if (imageFile) {
+        console.log(userData);
+        const formData = new FormData();
+        formData.append("file", imageFile);
+        const PARAMS = {
+          to_mail: emaily,
+          date: Date.now(),
+          time: Date.now(),
+          carNumber: userData?.carNumb,
+          carModel: userData?.model,
+        };
+        await emailjs
+          .send(SERVICE_ID, TEMPLATE_ID, PARAMS, PUBLIC_KEY)
+          .then((result) => {
+            console.log(result.text);
+          })
+          .catch((error) => {
+            console.error(error.text);
+          });
+        navigate("/details");
+      } else {
+        console.log("No file selected");
+      }
     }
+    else
+      navigate("/reject");
   };
 
   return (

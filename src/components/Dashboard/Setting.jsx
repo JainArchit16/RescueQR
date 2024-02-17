@@ -30,7 +30,7 @@ const Setting = () => {
   const fileInputRef = useRef(null);
 
   const [imageFile, setImageFile] = useState(null);
-
+  const [medicalHistory, setMedicalHistory] = useState("");
   const { register, handleSubmit } = useForm();
 
   const { signupData } = useSelector((state) => state.auth);
@@ -175,8 +175,8 @@ const Setting = () => {
         updateData.carNumb = data.carNumb === null ? null : data.carNumb;
         updateData.allergy = data.allergy === null ? null : data.allergy;
         updateData.bloodType = data.bloodType === null ? null : data.bloodType;
-
-        
+        updateData.medicalHistory =
+          data.medicalHistory === null ? null : data.medicalHistory;
         await updateDoc(docRef, updateData);
       }
 
@@ -307,6 +307,23 @@ email: email,
 phoneNumb:null,
 model: null,
 emergContact:null,carNumb:null,allergy:null,bloodType:null,carPic:null */}
+            <div>
+              <label
+                htmlFor="medicalHistory"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >
+                Medical History
+              </label>
+              <textarea
+                id="medicalHistory"
+                rows="4"
+                className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Describe here..."
+                {...register("medicalHistory", { required: true })}
+                value={medicalHistory}
+                onChange={(e) => setMedicalHistory(e.target.value)}
+              ></textarea>
+            </div>
             <div className="flex flex-row items-center justify-between mt-4 w-[70%]">
               <div className="flex flex-col gap-8">
                 <label for="firstName">

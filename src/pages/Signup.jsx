@@ -106,7 +106,7 @@ const Signup = () => {
         allergy: null,
         bloodType: null,
         carPic: null,
-        medicalRecord: null,
+        medicalHistory: null,
       };
 
       const docRef = await addDoc(collection(db, "users"), data);
