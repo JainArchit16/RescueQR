@@ -103,7 +103,7 @@ const Scan = () => {
         body: formData,
       });
       console.log(response);
-      if (response) {
+      if (1) {
         if (imageFile) {
           console.log(userData);
           const PARAMS = {
