@@ -123,7 +123,7 @@ const Scan = () => {
             .catch((error) => {
               console.error(error.text);
             });
-          navigate("/details" + emaily);
+          navigate("/details/" + emaily);
         } else {
           console.log("No file selected");
         }
