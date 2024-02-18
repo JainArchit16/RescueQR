@@ -95,14 +95,14 @@ const Scan = () => {
     try {
       const formData = new FormData();
       formData.append("file", imageFile);
-      const response = await fetch("http://127.0.0.1:5000/predict", {
-        method: "POST", // Adjust the method as needed
-        headers: {
-          "Content-Type": "multipart/form-data", // Adjust the content type as needed
-        },
-        body: formData,
-      });
-      console.log(response);
+      // const response = await fetch("http://127.0.0.1:5000/predict", {
+      //   method: "POST", // Adjust the method as needed
+      //   headers: {
+      //     "Content-Type": "multipart/form-data", // Adjust the content type as needed
+      //   },
+      //   body: formData,
+      // });
+      // console.log(response);
       if (1) {
         if (imageFile) {
           console.log(userData);
