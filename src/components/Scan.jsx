@@ -12,7 +12,7 @@ import { db } from "../config/firebase";
 
 const Scan = () => {
   const { email: routeEmail } = useParams();
-  const [previewUrl, setPreviewUrl] = useState(image);
+  const [previewUrl, setPreviewUrl] = useState(upload);
   const [imageFile, setImageFile] = useState(null);
   const fileInputRef = useRef(null);
   const navigate = useNavigate();
@@ -123,7 +123,7 @@ const Scan = () => {
             .catch((error) => {
               console.error(error.text);
             });
-          navigate("/details");
+          navigate("/details" + emaily);
         } else {
           console.log("No file selected");
         }
@@ -150,7 +150,7 @@ const Scan = () => {
 
       <div className="flex flex-col gap-8 items-center justify-between lg:w-1/3 mx-20">
         <img
-          src={upload}
+          src={previewUrl}
           alt="xyz"
           className="aspect-square w-full lg:w-2/3 object-cover"
         />
