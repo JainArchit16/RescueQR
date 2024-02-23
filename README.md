@@ -55,7 +55,7 @@ The Highway Safety Monitoring System is a comprehensive solution designed to enh
 ### Clone the Repository:
 
 ```bash
-git clone [https://github.com/JainArchit16/RescueQR.git](https://github.com/JainArchit16/RescueQR.git)
+git clone https://github.com/JainArchit16/RescueQR.git
 ```
 
 ### Install Dependencies:
@@ -65,17 +65,9 @@ cd highway-safety-monitoring-system
 npm install
 ```
 
-### Start the Backend Server:
-
-```bash
-cd backend
-npm start
-```
-
 ### Start the Frontend Server:
 
 ```bash
-cd frontend
 npm start
 ```
 
@@ -86,6 +78,4 @@ Open your web browser and navigate to [http://localhost:3000](http://localhost:3
 ## Contributing
 
 We welcome contributions from the community to enhance the Highway Safety Monitoring System further. Please feel free to submit pull requests or raise issues on the GitHub repository.
-```
 
-Feel free to adjust the formatting as per your preferences!
