@@ -1,70 +1,67 @@
-# Getting Started with Create React App
+Overview
+The Highway Safety Monitoring System is a comprehensive solution designed to enhance road safety on highways through real-time accident detection and response automation. Leveraging QR code technology, machine learning algorithms, and a user-friendly interface, this system facilitates efficient monitoring and management of accidents to minimize response times and improve overall safety.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Features
+QR Code Integration: Vehicles are equipped with QR codes, enabling immediate identification and verification in the event of accidents.
 
-## Available Scripts
+Real-time Accident Detection: Machine learning models analyze images captured from QR code scans to detect signs of accidents promptly.
 
-In the project directory, you can run:
+Automated Response Actions: Based on the output of the machine learning models, automated actions such as contacting emergency services and updating accident records are triggered.
 
-### `npm start`
+User-friendly Interface: The frontend provides an intuitive interface for users to register, log in, manage profiles, access real-time information, and receive feedback through toast notifications.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Secure Authentication: Integration with Firebase ensures secure user authentication and authorization, safeguarding user data and privacy.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Scalable Architecture: Built with the MERN (MongoDB, Express.js, React, Node.js) stack, the system's architecture is scalable, allowing for seamless integration of additional features and functionalities.
 
-### `npm test`
+Responsive Design: The frontend, developed with React and Tailwind CSS, is responsive and mobile-friendly, ensuring a consistent user experience across devices.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Data Management: MongoDB serves as the backend database, storing vehicle information, accident reports, and user profiles securely.
 
-### `npm run build`
+Community Contributions: The project welcomes contributions from the community to enhance the system's capabilities further, ensuring continuous improvement and innovation.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Real-time Updates: Users receive real-time updates on accidents and emergency responses, ensuring timely actions and efficient coordination.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Architecture
+Backend:
+MongoDB: A NoSQL database used for storing vehicle information, accident reports, user profiles, and other relevant data securely.
+Express.js: A web application framework for Node.js used to build robust and scalable APIs for handling HTTP requests and routing.
+Node.js: A JavaScript runtime environment that executes server-side logic and interacts with the database and other external services.
+Firebase Authentication: Integration with Firebase ensures secure user authentication and authorization, providing a seamless and reliable authentication mechanism.
+Frontend:
+React: A JavaScript library for building user interfaces, used to develop the frontend of the application with reusable components and efficient state management.
+Tailwind CSS: A utility-first CSS framework used for styling the frontend components, ensuring a responsive and visually appealing user interface.
+Toast Notifications: Toast notifications provide users with real-time feedback on actions such as successful logins, registrations, or errors encountered during the process.
+Machine Learning Integration:
+TensorFlow: An open-source machine learning framework used for building and training machine learning models, particularly for real-time accident detection.
+Keras: A high-level neural networks API, integrated with TensorFlow, used for prototyping and experimenting with deep learning models.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Getting Started
+Clone the Repository:
 
-### `npm run eject`
+bash
+Copy code
+git clone [https://github.com/JainArchit16/RescueQR.git](https://github.com/JainArchit16/RescueQR.git)
+Install Dependencies:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+bash
+Copy code
+cd highway-safety-monitoring-system
+npm install
+Start the Backend Server:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+bash
+Copy code
+cd backend
+npm start
+Start the Frontend Server:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+bash
+Copy code
+cd frontend
+npm start
+Access the Application:
+Open your web browser and navigate to http://localhost:3000.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Contributing
+We welcome contributions from the community to enhance the Highway Safety Monitoring System further. Please feel free to submit pull requests or raise issues on the GitHub repository.
