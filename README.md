@@ -23,16 +23,22 @@ Community Contributions: The project welcomes contributions from the community t
 Real-time Updates: Users receive real-time updates on accidents and emergency responses, ensuring timely actions and efficient coordination.
 
 Architecture
+
 Backend:
+
 MongoDB: A NoSQL database used for storing vehicle information, accident reports, user profiles, and other relevant data securely.
 Express.js: A web application framework for Node.js used to build robust and scalable APIs for handling HTTP requests and routing.
 Node.js: A JavaScript runtime environment that executes server-side logic and interacts with the database and other external services.
 Firebase Authentication: Integration with Firebase ensures secure user authentication and authorization, providing a seamless and reliable authentication mechanism.
+
 Frontend:
+
 React: A JavaScript library for building user interfaces, used to develop the frontend of the application with reusable components and efficient state management.
 Tailwind CSS: A utility-first CSS framework used for styling the frontend components, ensuring a responsive and visually appealing user interface.
 Toast Notifications: Toast notifications provide users with real-time feedback on actions such as successful logins, registrations, or errors encountered during the process.
+
 Machine Learning Integration:
+
 TensorFlow: An open-source machine learning framework used for building and training machine learning models, particularly for real-time accident detection.
 Keras: A high-level neural networks API, integrated with TensorFlow, used for prototyping and experimenting with deep learning models.
 
